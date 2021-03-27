@@ -259,7 +259,7 @@ int STUNServer::runUDP() {
 
         defaultLogger->info("Client Connected! Address: %v, Port: %v", inet_ntoa(udp_client_addr.sin_addr), ntohs(udp_client_addr.sin_port));
 
-        // Clear bufer
+        // Clear buffer
         memset(buffer, 0, sizeof(buffer));
 
         check(recvfrom(stun_server_socket, (char *) buffer, sizeof(buffer), MSG_WAITALL, (SA *) (&udp_client_addr), &addr_size), "Receive binding response failed!\n");
@@ -298,8 +298,8 @@ int STUNServer::runUDP() {
             * (int *) (&binding_response[16]) = response.message_header.identifier[2];
             * (unsigned short *) (&binding_response[20]) = response.attribute_header.type;
             * (unsigned short *) (&binding_response[22]) = response.attribute_header.length;
-            * (unsigned short *) (&binding_response[24]) = response.xor_mapped_address.reserved; // RESERVED
-            * (unsigned short *) (&binding_response[25]) = IPv4_ADDRESS_FAMILY;
+            * (unsigned short *) (&binding_response[24]) = response.xor_mapped_address.reserved;
+            * (unsigned short *) (&binding_response[25]) = response.xor_mapped_address.family;
             * (unsigned short *) (&binding_response[26]) = response.xor_mapped_address.x_port;
             * (unsigned char *) (&binding_response[28]) = ip_tokens[0];
             * (unsigned char *) (&binding_response[29]) = ip_tokens[1];
