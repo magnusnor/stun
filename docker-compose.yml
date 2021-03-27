@@ -1,0 +1,12 @@
+version: "3.4"
+
+services:
+  backend:
+    image: stun
+    build: src/
+    container_name: stun_1
+    ports:
+      - target: 3478
+        published: 3478
+        protocol: udp
+    network_mode: host
